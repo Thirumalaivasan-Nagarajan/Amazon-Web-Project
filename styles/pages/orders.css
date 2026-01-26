@@ -1,0 +1,310 @@
+/* General */
+body
+{
+  margin:0;
+  height:3000px;
+  padding-top:100px;
+}
+/*Header Main Section*/
+.header-main
+{
+  display:flex;
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  background:rgb(19, 25, 33);
+  align-items:center;
+  color:white;
+  height:60px;
+}
+/*Header Left Section*/
+.left-section
+{
+  width:180px;
+  margin-left:20px;
+  padding-top:10px;
+  
+}
+.amazon-logo
+{
+  width:100px;
+}
+.amazon-mobile-logo
+{
+  display:none;
+
+  width:35px;
+}
+/*Header Middle Section*/
+.middle-section
+{
+  flex-grow:1;
+  display:flex;
+  align-items:center;
+  display:flex;
+  justify-content: center;
+}
+.input-search
+{
+  font-size: 15px;
+  width:90%;
+  height:40px;
+  border:0px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-left:20px;
+  padding-top:0px;
+  padding-bottom:0px;
+  max-width:800px;
+}
+.input-search:focus
+{
+  outline:3px orange solid;
+}
+.search-button
+{
+  width:45px;
+  height:40px;
+  border:0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: orange;
+}
+.search-icon-image
+{
+  width:22px;
+  height:22px;
+}
+/*Header Right Section*/
+.right-section 
+{
+  display:flex;
+  align-items:center;
+  width:180px;
+  justify-content:space-evenly;
+  margin-right:20px;
+}
+/* Right Cart Section */
+.cart-section
+{
+  display:flex;
+  align-items:center;
+  position:relative;
+}
+.cart-image
+{
+  width:50px;
+}
+.cart-relative
+{
+  position:relative;
+}
+.cart-quantity
+{
+  position:absolute;
+  bottom:20px;
+  left:25px;
+  color:orange;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight:600;
+}
+.cart-text
+{
+  position:absolute;
+  left:50px;
+  top:15px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight:600;
+}
+
+
+
+/*Media query*/
+@media (max-width:600px)
+{
+.amazon-logo
+{
+  display:none;
+}
+.amazon-mobile-logo
+{
+  display:inline;
+}
+.left-section
+{
+  width:50px;
+}
+}
+
+/* Orders Section */
+.order-title
+{
+  display:grid;
+  max-width:850px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:25px;
+  font-size:25px;
+  font-weight:700;
+  font-family:Roboto;
+}
+.main 
+{
+  padding-right:50px;
+  margin-bottom:50px;
+  max-width:850px;
+  margin-left:auto;
+  margin-right:auto;
+  border:1px solid rgb(213, 217, 217);
+  border-radius:8px;
+}
+/*Order Description*/
+.order-description
+{
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  background:rgb(240, 242, 242) ;
+  width:100%;
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-left:25px;
+  padding-right:25px;
+}
+.order-date-total
+{
+  display:flex;
+  
+ 
+}
+.order-placed-date
+{
+  margin-right:45px;
+}
+.order-placed-date,.total,.order-id
+{
+  font-weight: 500;
+  font-family:Roboto;
+}
+.order-placed-date div,.total div,.order-id div
+{
+  color:rgb(33, 33, 33);
+  font-weight:400;
+}
+
+/*Order description Media Query*/
+@media(max-width:575px)
+{
+  .order-description
+  {
+    flex-direction:column;
+    align-items: start;
+    row-gap:4px;
+  }
+  .order-date-total
+  {
+    flex-direction: column;
+    row-gap:4px;
+  }
+  .order-placed-date div,.total div,.order-id div
+  {
+    display:inline;
+  }
+}
+
+
+/* Product*/
+.product-1,.product-2
+{
+  display:grid;
+  grid-template-columns:110px 1fr 220px;
+  padding-top:40px;
+  padding-bottom:40px;
+  padding-left:40px;
+}
+
+/* Product Media Query*/
+@media (max-width:800px)
+{
+  .product-1,.product-2
+  {
+    grid-template-columns:110px 1fr;
+    
+  }
+  .product-tracking
+  {
+    grid-row:2/3;
+    grid-column:2/3;
+    width:130px;
+    height:36px;
+    padding-left:24px;
+  }
+}
+.image 
+{
+  max-width:110px;
+  max-height:110px;
+}
+.product-details
+{
+  display:block;
+  padding-left:24px;
+  
+}
+.product-name,.product-arriving-date,.product-quantity
+{
+  padding-bottom:5px;
+}
+.product-name
+{
+  font-family:Roboto;
+  font-weight:700;
+}
+.product-arriving-date,.product-quantity
+{
+  font-family:Roboto;
+  font-weight:400;
+}
+.buy-it-again-button
+{
+  width:130px;
+  height:36px;
+  
+}
+.buy-button
+{
+  border-radius: 10px;
+  box-shadow:0 2px 5px rgba(213, 217, 217, 0.5);
+  width:100%;
+  background: rgb(255, 216, 20);
+  border:1px rgb(255, 216, 20);
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left:10px;
+  padding-right:10px;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.buy-button
+{
+  font-family: Roboto;
+  font-size: 15px;
+}
+.button-image
+{
+  width:25px;
+  height:25px;
+}
+.product-tracking-button
+{
+  width:100%;
+  font-size:15px;
+  padding:8px;
+  font-family:Roboto;
+  border-radius:8px;
+  border:0;
+  box-shadow:0 2px 5px rgba(213, 217, 217, 0.5);
+  background: white;
+}
