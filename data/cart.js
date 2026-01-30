@@ -1,1 +1,1 @@
-const cart=[{productName:'nothing',quantity:1}];
+const cart=[];
