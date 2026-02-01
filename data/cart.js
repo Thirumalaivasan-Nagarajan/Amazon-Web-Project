@@ -1,4 +1,5 @@
-export let cart=[
+export let cart=JSON.parse(localStorage.getItem('cart'))||
+[
   {
     quantity:1,
     productId:'e43638ce-6aa0-4b85-b27f-e1d07eb678c6'
@@ -15,10 +16,7 @@ export let cart=[
     quantity:1,
     productId:'5968897c-4d27-4872-89f6-5bcb052746d7'
   },
-  {
-    quantity:1,
-    productId:'8c9c52b5-5a19-4bcb-a5d1-158a74287c53'
-  }
+  
 ];
 
 //Camel Case
@@ -44,6 +42,7 @@ export function addItemOrIncreaseQuantity(button)
     {
       cart.push({quantity:1,productId:id});
     }
+    saveToLocalStorage();
 }
 
 //Updating Cart Quantity
@@ -54,7 +53,8 @@ export function  updateQuantity()
     {
       totalQuantity+=item.quantity;
     });
-    document.querySelector('.cart-quantity').innerHTML=totalQuantity;
+    document.querySelector('.cart-quantity').innerHTML= totalQuantity;
+    saveToLocalStorage();
 }
 
 //Deleting product from cart
@@ -72,4 +72,13 @@ export function remove(id)
   });
   cart=newArray;
   console.log(cart);
+  saveToLocalStorage();
+}
+
+
+//Storing Cart data into Localstorage to save data into browser
+
+export function saveToLocalStorage()
+{
+  localStorage.setItem('cart',JSON.stringify(cart));
 }
