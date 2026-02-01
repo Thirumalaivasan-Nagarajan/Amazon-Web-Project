@@ -176,6 +176,10 @@ body
   color:dodgerblue;
   cursor: pointer;
 }
+.product-quantity a:hover
+{
+  color:red;
+}
 .delivery-option
 {
   display:flex;

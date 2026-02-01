@@ -1,4 +1,4 @@
-export const cart=[
+export let cart=[
   {
     quantity:1,
     productId:'e43638ce-6aa0-4b85-b27f-e1d07eb678c6'
@@ -55,4 +55,21 @@ export function  updateQuantity()
       totalQuantity+=item.quantity;
     });
     document.querySelector('.cart-quantity').innerHTML=totalQuantity;
+}
+
+//Deleting product from cart
+
+export function remove(id)
+{
+  console.log(cart);
+  let newArray=[];
+  cart.forEach((product)=>
+  {
+    if(product.productId !== id)
+    {
+      newArray.push(product);
+    }
+  });
+  cart=newArray;
+  console.log(cart);
 }

@@ -1,5 +1,6 @@
 import {cart,addItemOrIncreaseQuantity,updateQuantity} from '../data/cart.js';   /*Import cart,product then only we can able to use this variables inside our file */
 import {products as product} from '../data/products.js';
+import {priceFormatting} from '../scripts/utils/money.js';
 
 let productHTML='';
 
@@ -9,7 +10,7 @@ product.forEach( (product)=>
         <div class="product-image"> <img class="image"src="${product.image}"></div>
       <div class="product-description"><p>${product.name}</p></div>
       <div class="product-rating"> <img class="rating-image" src="images/ratings/rating-${product.rating.stars*10}.png"> <span >${product.rating.count}</span></div>
-      <div class="product-price"> <p>$${(product.priceCents/100).toFixed(2)}</p></div>
+      <div class="product-price"> <p>$${priceFormatting(product.priceCents)}</p></div>
       <div class="product-quantity"> <select >
         <option value="">1</option>
         <option value="">2</option>

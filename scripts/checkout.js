@@ -1,23 +1,22 @@
 import { products } from "../data/products.js";
-import { cart } from "../data/cart.js";
+import { cart, remove } from "../data/cart.js";
+import {priceFormatting} from '../scripts/utils/money.js';
 
-let productString = '';
 
 
-cart.forEach((cartItem) => {
 
-  let id=cartItem.productId;
-  let matchedProduct='';
-  products.forEach((item)=>
-  {
-    
-    if(item.id===id)
-    {
+  let productString = '';
+  cart.forEach((cartItem) => {
 
-      matchedProduct=item;
+  let id = cartItem.productId;
+  let matchedProduct = '';
+  products.forEach((item) => {
+
+    if (item.id === id) {
+
+      matchedProduct = item;
     }
   });
-  console.log(matchedProduct);
 
   productString += `<!--Product-1-->
           <div class="product">
@@ -33,11 +32,13 @@ cart.forEach((cartItem) => {
                 <div class="product-name">
                   ${matchedProduct.name}
                 </div>
-                <div class="product-price"><p>$${matchedProduct.priceCents/100}</p></div>
+                <div class="product-price"><p>$${priceFormatting(matchedProduct.priceCents)}</p></div>
                 <div class="product-quantity">
                   Quantity: ${cartItem.quantity}
-                  <a class="update-button">Update</a>
-                  <a class="delete-button">Delete</a>
+                  <a data-product-id='${matchedProduct.id}' class="update-button">Update</a>
+                  <a 
+                  data-product-id='${matchedProduct.id}'
+                  class="delete-button">Delete</a>
                 </div>
               </div>
               <div class="delivery-option">
@@ -49,7 +50,7 @@ cart.forEach((cartItem) => {
                     <input
                       type="radio"
                       class="free-shipping-radio-button"
-                      name="free-shipping-radio-1"
+                      name="free-shipping-${matchedProduct.id}"
                     />
                   </div>
                   <div class="free-shipping-details">
@@ -59,7 +60,7 @@ cart.forEach((cartItem) => {
                 </div>
                 <div class="midlevel-shipping">
                   <div class="midlevel-shipping-button">
-                    <input type="radio" name="free-shipping-radio-1" />
+                    <input type="radio" name="free-shipping-${matchedProduct.id}" />
                   </div>
                   <div class="midlevel-shipping-details">
                     <div class="midlevel-shipping-date">Wednesday, June 15</div>
@@ -68,7 +69,7 @@ cart.forEach((cartItem) => {
                 </div>
                 <div class="highlevel-shipping">
                   <div class="highlevel-shipping-button">
-                    <input type="radio" name="free-shipping-radio-1" />
+                    <input type="radio" name="free-shipping-${matchedProduct.id}" />
                   </div>
                   <div class="highlevel-shipping-details">
                     <div class="highlevel-shipping-date">Monday, June 13</div>
@@ -83,13 +84,23 @@ cart.forEach((cartItem) => {
 
 });
 
-document.querySelector('.product-container').innerHTML=productString;
-console.log(productString);
-//Finding the prodcut  using the product ID
+document.querySelector('.product-container').innerHTML = productString;
 
-function findProduct(productId)
+
+
+
+
+
+//Adding EventLister to all of the Delete Buttons in the Cart Page.
+
+let list=document.querySelectorAll('.delete-button');
+list.forEach((button)=>
 {
-
-  
-
-}
+  button.addEventListener('click',()=>
+  {
+    
+     let id=button.dataset.productId;
+    remove(id);
+     
+  });
+});
