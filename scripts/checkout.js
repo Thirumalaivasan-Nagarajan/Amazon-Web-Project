@@ -19,7 +19,7 @@ import {priceFormatting} from '../scripts/utils/money.js';
   });
 
   productString += `<!--Product-1-->
-          <div class="product">
+          <div class="product productID-${id}">
             <div class="delivery-date">Delivery date:Tuesday,June 21</div>
             <div class="product-delivery-description">
               <div class="product-image">
@@ -101,6 +101,9 @@ list.forEach((button)=>
     
      let id=button.dataset.productId;
     remove(id);
+
+    /*Deleting div(product) using the unique class name(Product id as an class name)*/
+    document.querySelector(`.productID-${id}`).remove();  
      
   });
 });
