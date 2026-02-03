@@ -1,8 +1,16 @@
 import { products } from "../data/products.js";
 import { cart, remove } from "../data/cart.js";
 import {priceFormatting} from '../scripts/utils/money.js';
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 
+
+
+let today=dayjs();
+console.log(today);
+console.log(today.add(31,'day'));
+console.log(today.format('YYYY/MMMM/D'));
+console.log(typeof today.format('YYYY/MMMM/D'));
 
 
   let productString = '';
