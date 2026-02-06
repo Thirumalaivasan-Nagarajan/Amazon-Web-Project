@@ -19,9 +19,23 @@ cart.forEach((cartItem) => {
     }
   });
 
+  const deliveryOptionId=cartItem.deliveryOptionID;
+  let deliveryOption;
+  deliveryOptions.forEach((option)=>{
+    
+    if(option.id===deliveryOptionId)
+    {
+      deliveryOption=option;
+    }
+  });
+
+  let today = dayjs();
+    let deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+    let dateString = deliveryDate.format('dddd, MMMM D');
+
   productString += `<!--Product-1-->
           <div class="product productID-${id}">
-            <div class="delivery-date">Delivery date:Tuesday,June 21</div>
+            <div class="delivery-date">Delivery date:${dateString}</div>
             <div class="product-delivery-description">
               <div class="product-image">
                 <img
@@ -47,7 +61,7 @@ cart.forEach((cartItem) => {
                   Choose a delivery option:
                 </div>
                 
-                ${deliveryOptionsHTML()}
+                ${deliveryOptionsHTML(matchedProduct.id,cartItem.deliveryOptionID)}
                 
               </div>
             </div>
@@ -81,20 +95,23 @@ list.forEach((button) => {
 
 //Function to add Delivery Options
 
-function deliveryOptionsHTML() {
+function deliveryOptionsHTML(matchedProductId,cartItemDeliveryOptionID) {
   let HTML='';
   deliveryOptions.forEach((deliveryOption) => {
+
     let today = dayjs();
     let deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     let dateString = deliveryDate.format('dddd, MMMM D');
     let price= deliveryOption.price!==0? `$${priceFormatting(deliveryOption.price)}-`:'FREE';
+    const isChecked= cartItemDeliveryOptionID===deliveryOption.id;
 
    HTML+=    `<div class="delivery-shippin-option">
                   <div class="free-shipping-button">
                     <input
                       type="radio"
+                      ${isChecked?'checked':''}
                       class="free-shipping-radio-button"
-                      name="free-shipping-"
+                      name="free-shipping-${matchedProductId}"
                     />
                   </div>
                   <div class="free-shipping-details">
