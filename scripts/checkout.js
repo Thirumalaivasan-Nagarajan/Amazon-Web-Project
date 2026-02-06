@@ -1,5 +1,5 @@
 import { products } from "../data/products.js";
-import { cart, remove } from "../data/cart.js";
+import { cart, remove,updateDeliveryOptionID } from "../data/cart.js";
 import { priceFormatting } from '../scripts/utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import deliveryOptions from "./deliveryOptions.js";
@@ -20,18 +20,22 @@ cart.forEach((cartItem) => {
   });
 
   const deliveryOptionId=cartItem.deliveryOptionID;
+  
+  
+
   let deliveryOption;
   deliveryOptions.forEach((option)=>{
     
     if(option.id===deliveryOptionId)
     {
+      
       deliveryOption=option;
     }
   });
 
-  let today = dayjs();
-    let deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
-    let dateString = deliveryDate.format('dddd, MMMM D');
+    const today = dayjs();
+    const deliveryDate = today.add( deliveryOption.deliveryDays , 'days');
+    const dateString = deliveryDate.format('dddd, MMMM D');
 
   productString += `<!--Product-1-->
           <div class="product productID-${id}">
@@ -92,6 +96,18 @@ list.forEach((button) => {
 });
 
 
+//Adding Eventlistener to radio button for dynamic changes of dates based on the radio button
+
+document.querySelectorAll('.js-delivery-option').forEach((options)=>
+{
+  options.addEventListener('click',()=>{
+    
+    let {productId,deliveryId}=options.dataset;
+    updateDeliveryOptionID(productId,deliveryId);
+  });
+});
+
+
 
 //Function to add Delivery Options
 
@@ -105,8 +121,11 @@ function deliveryOptionsHTML(matchedProductId,cartItemDeliveryOptionID) {
     let price= deliveryOption.price!==0? `$${priceFormatting(deliveryOption.price)}-`:'FREE';
     const isChecked= cartItemDeliveryOptionID===deliveryOption.id;
 
-   HTML+=    `<div class="delivery-shippin-option">
-                  <div class="free-shipping-button">
+   HTML+=    `<div class="delivery-shippin-option ">
+                  <div class="free-shipping-button js-delivery-option"
+                  data-product-id="${matchedProductId}"
+                  data-delivery-id="${deliveryOption.id}"
+                  >
                     <input
                       type="radio"
                       ${isChecked?'checked':''}

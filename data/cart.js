@@ -2,23 +2,18 @@ export let cart=JSON.parse(localStorage.getItem('cart'))||
 [
   {
     quantity:1,
-    productId:'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    deliveryOptionID:'1'
-  },
-  {
-    quantity:1,
     productId:'15b6fc6f-327a-4ec4-896f-486349e85a3d',
-    deliveryOptionID:'2'
+    deliveryOptionID:'2',
   },
   {
     quantity:1,
     productId:'6b07d4e7-f540-454e-8a1e-363f25dbae7d',
-    deliveryOptionID:'3'
+    deliveryOptionID:'3',
   },
   {
     quantity:1,
     productId:'5968897c-4d27-4872-89f6-5bcb052746d7',
-    deliveryOptionID:'1'
+    deliveryOptionID:'1',
   },
   
 ];
@@ -85,4 +80,23 @@ export function remove(id)
 export function saveToLocalStorage()
 {
   localStorage.setItem('cart',JSON.stringify(cart));
+}
+
+
+
+
+
+//Updating Delivery Option ID
+
+export function updateDeliveryOptionID(productID,deliveryOption)
+{
+  cart.forEach((cartItem)=>
+  {
+    if(productID===cartItem.productId)
+    {
+      cartItem.deliveryOptionID=deliveryOption;
+      
+    }
+  });
+  saveToLocalStorage();
 }
