@@ -1,3 +1,20 @@
+//Function for finding the matched product
+
+export function getProduct(productID)
+{
+  let matchedProduct='';
+    products.forEach((product)=>
+    {
+      if(productID===product.id)
+      {
+        matchedProduct=product;
+      }
+    });
+
+    return matchedProduct;
+}
+
+
 export const products = [  //Exporting products varaible then outside file can able to access 
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",

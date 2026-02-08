@@ -60,7 +60,7 @@ export function  updateQuantity()
 
 export function remove(id)
 {
-  console.log(cart);
+  
   let newArray=[];
   cart.forEach((product)=>
   {
@@ -70,7 +70,6 @@ export function remove(id)
     }
   });
   cart=newArray;
-  console.log(cart);
   saveToLocalStorage();
 }
 
