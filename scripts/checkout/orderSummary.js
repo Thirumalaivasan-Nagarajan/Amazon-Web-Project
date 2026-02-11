@@ -5,6 +5,8 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliveryOptions,getDeliveryOption} from "../deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 
+
+//Single function of this page
 export function renderOrderSummary()
 {
 
